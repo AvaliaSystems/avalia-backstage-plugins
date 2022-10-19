@@ -1,13 +1,13 @@
 {
   "name": "app",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "bundled": true,
   "backstage": {
     "role": "frontend"
   },
   "dependencies": {
-    "@avaliasystems/plugin-backstage-plugin-vega": "^0.2.1",
+    "@avaliasystems/plugin-backstage-plugin-vega": "^0.2.2",
     "@backstage/app-defaults": "^1.0.2",
     "@backstage/catalog-model": "^1.0.2",
     "@backstage/cli": "^0.19.0",
