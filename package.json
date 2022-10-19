@@ -30,7 +30,7 @@
     ]
   },
   "devDependencies": {
-    "@backstage/cli": "^0.17.1",
+    "@backstage/cli": "^0.19.0",
     "@spotify/prettier-config": "^12.0.0",
     "concurrently": "^6.0.0",
     "lerna": "^4.0.0",
@@ -39,7 +39,9 @@
   },
   "resolutions": {
     "@types/react": "^17",
-    "@types/react-dom": "^17"
+    "@types/react-dom": "^17",
+    "**/parse-url": "5.0.0",
+    "**/git-up": "4.0.2"
   },
   "prettier": "@spotify/prettier-config",
   "lint-staged": {
