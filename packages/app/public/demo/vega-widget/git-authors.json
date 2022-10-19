@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic bar chart example, with value labels shown upon mouse hover.",
+  "width": 700,
+  "height": 500,
+  "padding": 5,
+
+  "data": [
+    {
+      "name": "source",
+      "url": "https://raw.githubusercontent.com/AvaliaSystems/backstage/master/.avalia/metrics/git-authors.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "commits": "number"
+        }
+      }
+    },
+    {
+      "name": "ranks",
+      "source": "source",
+      "transform": [
+        {
+          "type": "window",
+          "sort": {"field": "commits", "order": "descending"},
+          "ops": ["row_number"], "as": ["rank"]
+        }        
+      ]
+    },
+    {
+      "name": "table",
+      "source": "ranks",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "ranks",
+          "key": "author_name",
+          "values": ["rank"],
+          "fields": ["author_name"]
+        },
+        {
+          "type": "formula",
+          "as": "author_name",
+          "expr": "datum.rank < 11 ? datum.author_name : 'All Others'"
+        },
+        {
+          "type": "aggregate",
+          "fields": ["commits"],
+          "ops": ["sum"],
+          "as": ["commits"],
+          "groupby": ["author_name"]
+        },
+        {
+          "type": "collect",
+          "sort": { "field": "commits", "order": "descending"}
+        }
+      ]
+    }
+  ],
+
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {"events": "rect:mouseover", "update": "datum"},
+        {"events": "rect:mouseout",  "update": "{}"}
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xscale",
+      "domain": {"data": "table", "field": "commits"},
+      "range": "width",
+      "nice": true,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {"data": "table", "field": "author_name"},
+      "type": "band",
+      "padding": 0.2,
+      "range": "height"
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", "scale": "xscale" },
+    { "orient": "left", "scale": "yscale" }
+  ],
+
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data":"table"},
+      "encode": {
+        "enter": {
+          "y": {"scale": "yscale", "field": "author_name"},
+          "height": {"scale": "yscale", "band": 1},
+          "x": {"scale": "xscale", "field": "commits"},
+          "x2": {"scale": "xscale", "value": 0}
+        },
+        "update": {
+          "fill": {"value": "steelblue"}
+        },
+        "hover": {
+          "fill": {"value": "red"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {"value": "left"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "#333"}
+        },
+        "update": {
+          "y": {"scale": "yscale", "signal": "tooltip.author_name", "band": 0.5},
+          "x": {"scale": "xscale", "signal": "tooltip.commits", "offset": 10},
+          "text": {"signal": "tooltip.commits"},
+          "fillOpacity": [
+            {"test": "datum === tooltip", "value": 0},
+            {"value": 1}
+          ]
+        }
+      }
+    }
+  ]
+}

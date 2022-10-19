@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.8.json",
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "config": {
+    "axis": {
+      "font": "system-ui",
+      "labelFontSize": 14,
+      "ticks": false,
+      "labelPadding": 14,
+      "domain": false,
+      "labelOverlap": "parity"
+    },
+    "text": {
+      "font": "system-ui",
+      "fontSize": 14
+    }
+  },
+  "signals": [
+    {
+      "name": "secondaryColor",
+      "value": "red"
+    }
+  ],
+  "data": [{
+    "name": "table",
+    "format": {
+      "type": "csv"
+    },
+    "url": "/demo/vega-widget/backstage-commits.csv",
+    "transform": [
+      {
+        "type": "formula",
+        "expr": "toDate(datum.commit_date)",
+        "as": "commit_date_as_date"
+      },
+      {
+        "type": "timeunit",
+        "timezone": "utc",
+        "field": "commit_date_as_date",
+        "units": ["year", "month"],
+        "as": ["month_from", "month_to"]
+      }
+    ]}, {
+    "name": "stats",
+    "source": "table",
+    "transform": [
+      {
+        "type": "aggregate",
+        "groupby": ["month_from", "month_to"]
+      },
+      {
+        "type": "collect",
+        "sort": {
+          "field": "month_from"
+        }
+      }
+    ]
+
+    }],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "time",
+      "domain": {"data": "stats", "field": "month_from"},
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "type": "linear",
+      "domain": {"data": "stats", "field": "count"},
+      "nice": true,
+      "range": "height"
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", "scale": "xscale", "format": "%b %y" },
+    { "orient": "left", "scale": "yscale" }
+  ],
+
+  "marks": [
+    {
+      "type": "line",
+      "from": {"data":"stats"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale", "field": "month_from"},
+          "y": {"scale": "yscale", "field": "count"},
+          "interpolate": {
+            "value": "natural"
+          }
+        },
+        "update": {
+          "stroke": {"signal": "secondaryColor"}
+        },
+        "hover": {
+          "stroke": {"signal": "theme.palette.info.main"}
+        }
+      }
+    }
+  ]
+}

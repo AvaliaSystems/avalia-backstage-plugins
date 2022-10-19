@@ -9,12 +9,15 @@ import {
 import { TechDocsSearchResultListItem } from '@backstage/plugin-techdocs';
 
 import {
+  SearchType,
+} from '@backstage/plugin-search';
+
+import {
   SearchBar,
   SearchFilter,
   SearchResult,
-  SearchType,
   DefaultResultListItem,
-} from '@backstage/plugin-search';
+} from '@backstage/plugin-search-react';
 import { useSearch } from '@backstage/plugin-search-react';
 import {
   CatalogIcon,
@@ -112,7 +115,7 @@ const SearchPage = () => {
             <SearchResult>
               {({ results }) => (
                 <List>
-                  {results.map(({ type, document, highlight }) => {
+                  {results.map(({ type, document, highlight, rank }) => {
                     switch (type) {
                       case 'software-catalog':
                         return (
@@ -120,6 +123,7 @@ const SearchPage = () => {
                             key={document.location}
                             result={document}
                             highlight={highlight}
+                            rank={rank}
                           />
                         );
                       case 'techdocs':
@@ -128,6 +132,7 @@ const SearchPage = () => {
                             key={document.location}
                             result={document}
                             highlight={highlight}
+                            rank={rank}
                           />
                         );
                       default:
@@ -136,6 +141,7 @@ const SearchPage = () => {
                             key={document.location}
                             result={document}
                             highlight={highlight}
+                            rank={rank}
                           />
                         );
                     }

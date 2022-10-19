@@ -1,0 +1,19 @@
+{
+  "config": {
+    "axis": {
+      "font": "system-ui",
+      "labelFontSize": 14,
+      "ticks": false,
+      "labelPadding": 10,
+      "domain": false,
+      "labelOverlap": "parity"
+    },
+    "text": {
+      "font": "system-ui",
+      "fontSize": 18
+    },
+    "range": {
+      "category": ["beige", "orange", "gray"]
+    }
+  }
+}

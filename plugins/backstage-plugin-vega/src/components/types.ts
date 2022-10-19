@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-import { createRouteRef } from '@backstage/core-plugin-api';
+export enum VegaLibrary {
+  VEGA,
+  VEGA_LITE,
+}
 
-export const rootRouteRef = createRouteRef({
-  id: 'backstage-plugin-vega',
-});
+export type VegaWidgetDefinition = {
+  title?: string;
+  library: VegaLibrary;
+  spec: string;
+}
+

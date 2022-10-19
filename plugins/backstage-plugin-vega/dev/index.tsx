@@ -1,12 +1,83 @@
-import React from 'react';
-import { createDevApp } from '@backstage/dev-utils';
-import { backstagePluginVegaPlugin, BackstagePluginVegaPage } from '../src/plugin';
+/*
+ * Copyright 2022 Avalia Systems SA
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-createDevApp()
-  .registerPlugin(backstagePluginVegaPlugin)
-  .addPage({
-    element: <BackstagePluginVegaPage />,
-    title: 'Root Page',
-    path: '/backstage-plugin-vega'
-  })
-  .render();
+import { createDevApp } from '@backstage/dev-utils';
+import React from 'react';
+import { VegaLibrary } from '../src/components/types';
+import { VegaWidgetFrame } from '../src/components/VegaWidgetFrame';
+import { backstagePluginVegaPlugin, VegaWidget } from '../src/plugin';
+import { GridExample } from './GridExample';
+
+
+const app = createDevApp().registerPlugin(backstagePluginVegaPlugin);
+
+  app.addPage({
+    element: <GridExample />,
+    title: 'Responsive grid',
+    path: '/backstage-plugin-vega/responsive-grid'
+  });
+
+  const FixSizedFrame = () => {
+    return (
+      <VegaWidgetFrame width="400px" height="300px" margin="1rem">
+        <VegaWidget specUrl="/monthly-commits-line.json" library={VegaLibrary.VEGA} />
+      </VegaWidgetFrame>
+    );
+  }
+
+  app.addPage({
+    element: <FixSizedFrame />,
+    title: 'Fixed sized frame',
+    path: '/backstage-plugin-vega/fixed-sized-frame'
+  });
+
+  const FullSizedFrame = () => {
+    return (
+      <VegaWidgetFrame width="100%" height="100vh" margin="0rem">
+        <VegaWidget specUrl="/monthly-commits-line.json" library={VegaLibrary.VEGA} />
+      </VegaWidgetFrame>
+    );
+  }
+  
+  app.addPage({
+    element: <FullSizedFrame />,
+    title: 'Full sized frame',
+    path: '/backstage-plugin-vega/full-sized-frame'
+  });
+  
+  const FixSizedFrameGroupedBarChart = () => {
+    return (
+      <VegaWidgetFrame width="400px" height="500px" margin="1rem">
+        <VegaWidget specUrl="/grouped-bar-chart.json" library={VegaLibrary.VEGA} />
+      </VegaWidgetFrame>
+    );
+  }
+
+  const FixSizedFrameGroupedBarChartDefaultConfig = () => {
+    return (
+      <VegaWidgetFrame width="400px" height="500px" margin="1rem">
+        <VegaWidget specUrl="/grouped-bar-chart.json" library={VegaLibrary.VEGA} overrideConfig/>
+      </VegaWidgetFrame>
+    );
+  }
+
+  app.addPage({
+    element: <div><FixSizedFrameGroupedBarChart /><FixSizedFrameGroupedBarChartDefaultConfig /></div>,
+    title: 'Grouped Bar Chart',
+    path: '/backstage-plugin-vega/fixed-sized-frame-grouped-bar-chart'
+  });
+
+  app.render();

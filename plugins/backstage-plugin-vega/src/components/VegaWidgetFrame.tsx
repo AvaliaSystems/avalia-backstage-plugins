@@ -14,8 +14,28 @@
  * limitations under the License.
  */
 
-import { createRouteRef } from '@backstage/core-plugin-api';
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import React from "react";
 
-export const rootRouteRef = createRouteRef({
-  id: 'backstage-plugin-vega',
-});
+interface FrameProps {
+  width: string;
+  height: string;
+  margin: string;
+}
+
+const useStyles = makeStyles(() => ({
+  root: (props: FrameProps) => ({
+    width: props.width,
+    height: props.height,
+    margin: props.margin,
+  })
+}));
+
+export const VegaWidgetFrame = (props: React.PropsWithChildren<FrameProps>) => {
+  const classes = useStyles(props);
+  return (
+    <div className={classes.root}>
+      {props.children}
+    </div>
+  )
+}

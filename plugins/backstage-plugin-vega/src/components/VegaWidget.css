@@ -13,9 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+ .widgetGrid {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: rgb(207, 207, 207);
+  height: 100%;
+}
 
-import { createRouteRef } from '@backstage/core-plugin-api';
+/*
+.widgetFrame {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8rem;
+  padding: 0.8rem;
+  background-color: rgb(236, 236, 236);
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 10rem;
+  min-height: 10rem;
+  width: 30rem;
+  height: 20rem;
+}
+*/
 
-export const rootRouteRef = createRouteRef({
-  id: 'backstage-plugin-vega',
-});
+.widgetTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* .widget {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0rem;
+  width: 100%;
+  height: 100%;
+} */
+
+/* .vg-resize-fix {
+  display: flex !important;
+} */
