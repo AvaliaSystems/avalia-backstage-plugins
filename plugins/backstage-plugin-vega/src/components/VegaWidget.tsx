@@ -51,23 +51,6 @@ const useStyles = makeStyles<BackstageTheme>(() => ({
   vgResizeFix: {
     display: 'flex !important',
   },
-  /*
-  widgetFrame: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '0.8rem',
-    padding: '0.8rem',
-    flexGrow: 1,
-    flexShrink: 1,
-    minWidth: '10rem',
-    minHeight: '10rem',
-    width: '30rem',
-    height: '20rem',
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    maxWidth: 450,
-  },
-  */
 }));
 
 scheme('seq', scaleSequential(['white', 'purple']));
