@@ -30,7 +30,7 @@ touch `app/public/demo/vega-widget/git-authors.json`
 import {
   VegaWidget,
   VegaLibrary,
-} from '@avaliasystems/plugin-backstage-plugin-vega';
+} from '@avaliasystems/backstage-plugin-vega';
 ```
 
 ```
@@ -65,6 +65,26 @@ const useStyles = makeStyles(() => ({
   </div>
 </div>
 ```
+
+
+
+It is possible to add Vega widgets on a dedicated page (think dashboard), but it is also possible to add them to tab in the catalog. Consider the following example in the `EntityPage.tsx` page:
+
+```
+<EntityLayout.Route path="/vega" title="Vega.js">
+	<div style={{ width: '100%', height: 300, display: 'flex'}}>
+    <VegaWidget
+    	library={VegaLibrary.VEGA}
+    	specUrl="/vega/git-authors.json"
+    />
+    <VegaWidget
+    	library={VegaLibrary.VEGA}
+    	specUrl="/vega/git-authors.json"
+    />
+</div>
+```
+
+![](docs/catalog.png)
 
 
 
