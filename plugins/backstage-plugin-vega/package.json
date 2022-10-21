@@ -29,7 +29,6 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.57",
     "@types/d3": "^7.4.0",
-    "app": "^0.3.0",
     "d3-dsv": "^3.0.1",
     "d3-scale": "^4.0.2",
     "react-use": "^17.2.4",
