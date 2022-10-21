@@ -48,30 +48,25 @@ export const VegaWidgetPage = () => {
 
         <div className={`${classes.widgetGrid}`}>
           <VegaWidget
-            title="Example"
             library={VegaLibrary.VEGA}
             specUrl="/demo/vega-widget/git-authors.json"
             overrideConfig
           />
           <VegaWidget
-            title="Example"
             library={VegaLibrary.VEGA_LITE}
             specUrl="/demo/vega-widget/vega-lite-bar-chart.json"
             overrideConfig
           />
           <VegaWidget
-            title="Example"
             library={VegaLibrary.VEGA}
             specUrl="/demo/vega-widget/monthly-commits-line.json"
             overrideConfig
           />
           <VegaWidget
-            title="Example"
             library={VegaLibrary.VEGA_LITE}
             specUrl="/demo/vega-widget/vega-lite-bar-chart-with-config.json"
           />
           <VegaWidget
-            title="Example"
             library={VegaLibrary.VEGA_LITE}
             specUrl="/demo/vega-widget/vega-lite-bar-chart-with-config.json"
             overrideConfig

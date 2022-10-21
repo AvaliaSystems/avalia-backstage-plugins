@@ -28,12 +28,3 @@ export const VegaWidget = backstagePluginVegaPlugin.provide(
     }
   }),
 );
-
-export const VegaWidgetGrid = backstagePluginVegaPlugin.provide(
-  createComponentExtension({
-    name: 'VegaWidgetGrid',
-    component: {
-      lazy: () => import('./components/VegaWidgetGrid').then(m => m.VegaWidgetGrid),
-    }
-  }),
-);

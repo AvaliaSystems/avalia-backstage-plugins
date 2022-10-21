@@ -1,5 +1,5 @@
 {
-  "name": "@avaliasystems/plugin-backstage-plugin-vega",
+  "name": "@avaliasystems/backstage-plugin-vega",
   "version": "0.2.2",
   "main": "src/index.ts",
   "types": "src/index.ts",

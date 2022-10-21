@@ -2,6 +2,15 @@
 
 This repo contains Backstage plugins developed at Avalia Systems. 
 
+![docs/screenshot.png](docs/screenshot.png)
+
+
+
+## Current plugins
+
+* The first plugin allows you to bring Vega.js visualizations in your Backstage portal.
+
+
 
 ## Credits
 

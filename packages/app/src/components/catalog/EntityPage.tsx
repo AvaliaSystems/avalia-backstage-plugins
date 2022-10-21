@@ -215,6 +215,7 @@ const defaultEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
+
   </EntityLayout>
 );
 

@@ -17,8 +17,7 @@
 import { csvParse, autoType } from 'd3-dsv';
 
 import React, { useEffect, useState } from 'react';
-import './VegaWidget.css';
-import { Vega, VegaLite, View, VisualizationSpec } from 'react-vega';
+import { Vega, VegaLite, VisualizationSpec } from 'react-vega';
 
 import {Config as VgConfig} from 'vega';
 import {Config as VlConfig} from 'vega-lite';
@@ -32,7 +31,6 @@ import defaultVegaLiteConfig from './vega-configs/vega-lite-config-default.json'
 import defaultVegaConfig from './vega-configs/vega-config-default.json';
 
 export interface WidgetProps {
-  title?: string;
   specUrl: string;
   dataUrl?: string;
   library: VegaLibrary;
@@ -47,6 +45,8 @@ const useStyles = makeStyles<BackstageTheme>(() => ({
     width: '100%',
     height: '100%',
     overflow: 'auto',
+    display: 'flex',
+    justifyItems: 'stretch'
   },
   vgResizeFix: {
     display: 'flex !important',
@@ -164,11 +164,14 @@ export const VegaWidget = (props: WidgetProps) => {
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
+  /*
+   * It is possible to access the Vega view, for instance to send signals
   const handleNewView = (view: View) => {
-    console.log(view);
+    // console.log(view);
     // view.signal("theme", theme).run();
     // view.signal("secondaryColor", theme.palette.warning.main).run();
   };
+  */
 
   return (
     <div className={classes.widget} ref={vegaRef}>
@@ -180,7 +183,7 @@ export const VegaWidget = (props: WidgetProps) => {
           height={vegaHeight}
           actions={false}
           spec={vegaSpec}
-          onNewView={handleNewView}
+          /* onNewView={handleNewView} */
         />
       )}
       {vegaSpec && props.library === VegaLibrary.VEGA_LITE && (
@@ -191,7 +194,7 @@ export const VegaWidget = (props: WidgetProps) => {
           height={vegaHeight}
           actions={false}
           spec={vegaSpec}
-          onNewView={handleNewView}
+          /* onNewView={handleNewView} */
         />
       )}
     </div>
