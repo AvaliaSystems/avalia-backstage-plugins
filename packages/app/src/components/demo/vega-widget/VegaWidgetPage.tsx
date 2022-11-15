@@ -6,10 +6,7 @@ import {
   ContentHeader,
   SupportButton,
 } from '@backstage/core-components';
-import {
-  VegaWidget,
-  VegaLibrary,
-} from '@avaliasystems/plugin-backstage-plugin-vega';
+import { VegaWidget, VegaLibrary } from '@avaliasystems/backstage-plugin-vega';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({

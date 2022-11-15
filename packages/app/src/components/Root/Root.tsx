@@ -15,7 +15,7 @@
  */
 
 import React, { useContext, PropsWithChildren } from 'react';
-import { Link, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import MapIcon from '@material-ui/icons/MyLocation';
@@ -39,6 +39,7 @@ import {
   SidebarPage,
   SidebarScrollWrapper,
   SidebarSpace,
+  Link,
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -65,12 +66,7 @@ const SidebarLogo = () => {
 
   return (
     <div className={classes.root}>
-      <Link
-        component={NavLink}
-        to="/"
-        underline="none"
-        className={classes.link}
-      >
+      <Link to="/" underline="none" className={classes.link}>
         {isOpen ? <LogoFull /> : <LogoIcon />}
       </Link>
     </div>
@@ -94,8 +90,16 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
         {/* End global nav */}
         <SidebarDivider />
-        <SidebarItem icon={ExtensionIcon} to="avalia-vega-widget-grid" text="Vega (grid)" />
-        <SidebarItem icon={ExtensionIcon} to="avalia-vega-widget-scroll" text="Vega (scroll)" />
+        <SidebarItem
+          icon={ExtensionIcon}
+          to="avalia-vega-widget-grid"
+          text="Vega (grid)"
+        />
+        <SidebarItem
+          icon={ExtensionIcon}
+          to="avalia-vega-widget-scroll"
+          text="Vega (scroll)"
+        />
         <SidebarDivider />
         <SidebarScrollWrapper>
           <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />

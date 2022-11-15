@@ -7,11 +7,8 @@ import {
   PageWithHeader,
 } from '@backstage/core-components';
 import { Button, Grid } from '@material-ui/core';
-import {
-  VegaWidget,
-  VegaLibrary,
-} from '@avaliasystems/plugin-backstage-plugin-vega';
-import avaliaLogo from'./avalia-logo.png';
+import { VegaWidget, VegaLibrary } from '@avaliasystems/backstage-plugin-vega';
+import avaliaLogo from './avalia-logo.png';
 
 export const Actions = () => {
   return (
@@ -46,7 +43,8 @@ export const HomePage = () => {
                   and developer experience.
                 </p>
                 <p>
-                The plugins in this repo are part of <b>DX Hub</b>, our solution built on top of Backstage.
+                  The plugins in this repo are part of <b>DX Hub</b>, our
+                  solution built on top of Backstage.
                 </p>
                 <div style={{ textAlign: 'center', marginTop: '2rem' }}>
                   <img alt="avalia logo" src={avaliaLogo} />

@@ -6,10 +6,7 @@ import {
   ContentHeader,
   SupportButton,
 } from '@backstage/core-components';
-import {
-  VegaWidget,
-  VegaLibrary,
-} from '@avaliasystems/plugin-backstage-plugin-vega';
+import { VegaWidget, VegaLibrary } from '@avaliasystems/backstage-plugin-vega';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -21,7 +18,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
     flexShrink: 1,
     height: '350px',
-    width: '300px'
+    width: '300px',
   },
 }));
 
@@ -55,7 +52,7 @@ export const VegaWidgetPageScrolling = () => {
             />
           </div>
         </div>
-      
+
         <div className={classes.grid}>
           <div className={classes.item}>
             <VegaWidget
@@ -78,7 +75,6 @@ export const VegaWidgetPageScrolling = () => {
             />
           </div>
         </div>
-
       </Content>
     </Page>
   );

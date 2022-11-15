@@ -8,14 +8,13 @@ import {
 } from '@backstage/plugin-catalog-react';
 import { TechDocsSearchResultListItem } from '@backstage/plugin-techdocs';
 
-import {
-  SearchType,
-} from '@backstage/plugin-search';
+import { SearchType } from '@backstage/plugin-search';
 
 import {
   SearchBar,
   SearchFilter,
   SearchResult,
+  SearchPagination,
   DefaultResultListItem,
 } from '@backstage/plugin-search-react';
 import { useSearch } from '@backstage/plugin-search-react';
@@ -112,6 +111,7 @@ const SearchPage = () => {
             </Paper>
           </Grid>
           <Grid item xs={9}>
+            <SearchPagination />
             <SearchResult>
               {({ results }) => (
                 <List>

@@ -1,21 +1,17 @@
 # backstage-plugin-vega
 
-
-
 ## Overview
 
 The Vega plugin allows you to render a [Vega.js](https://vega.github.io/vega/) specification in your Backstage pages.
 
 ![](./docs/dashboard.png)
 
-
-
 ## How to use the Vega plugin
 
 1. Install the plugin from the root directory
 
 ```bash
-yarn add @avaliasystems/backstage-plugin-vega
+yarn workspace app add @avaliasystems/backstage-plugin-vega
 ```
 
 2. Create a vega specification
@@ -66,8 +62,6 @@ const useStyles = makeStyles(() => ({
 </div>
 ```
 
-
-
 It is possible to add Vega widgets on a dedicated page (think dashboard), but it is also possible to add them to tab in the catalog. Consider the following example in the `EntityPage.tsx` page:
 
 ```
@@ -86,15 +80,11 @@ It is possible to add Vega widgets on a dedicated page (think dashboard), but it
 
 ![](docs/catalog.png)
 
-
-
 ## TODO
 
-* **Improve dynamic sizing**. There are different ways to manage the size of charts rendered by Vega. If you provide fixed width and height, this is easy to handle. However, if you want the chart to use available space as the user resizes the window, the situation is a bit tricky. As demonstrated in the `Vega (grid)` example page, we have a solution for this use case. However, it requires all DOM ancestors to have the `overflow: auto` property set.
-* **Add wrapper components**. At the moment, the page developer has to create the "frame" into which the Vega widget will be rendered. In the example pages, the page developer is creating and styling the grid that will host the charts. This gives a lot of flexibility to developers, but it has some onboarding cost. We plan to add some ready-to-use components that would make it faster to create dashboard pages, or widget "rows" in an entity tab.
-* **Improve and document theming**. It is possible to update a Vega specification, both when it is first loaded and afterwards. With some conventions in the Vega specifications, it is possible to inject Backstage theme properties into the chart. We have already made some experiments and it works well, but have work to improve and document the solution.
-
-
+- **Improve dynamic sizing**. There are different ways to manage the size of charts rendered by Vega. If you provide fixed width and height, this is easy to handle. However, if you want the chart to use available space as the user resizes the window, the situation is a bit tricky. As demonstrated in the `Vega (grid)` example page, we have a solution for this use case. However, it requires all DOM ancestors to have the `overflow: auto` property set.
+- **Add wrapper components**. At the moment, the page developer has to create the "frame" into which the Vega widget will be rendered. In the example pages, the page developer is creating and styling the grid that will host the charts. This gives a lot of flexibility to developers, but it has some onboarding cost. We plan to add some ready-to-use components that would make it faster to create dashboard pages, or widget "rows" in an entity tab.
+- **Improve and document theming**. It is possible to update a Vega specification, both when it is first loaded and afterwards. With some conventions in the Vega specifications, it is possible to inject Backstage theme properties into the chart. We have already made some experiments and it works well, but have work to improve and document the solution.
 
 ## Notes
 
